@@ -9,22 +9,20 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --brown-deep:   #1a0d05;
-      --brown-rich:   #3b1a08;
-      --brown-mid:    #6b3a1f;
-      --gold:         #d4943a;
-      --gold-light:   #f0c060;
-      --cream:        #f5e8d0;
-      --pistachio:    #8ab840;
-      --pistachio-l:  #b8d96a;
-      --choco-glow:   rgba(212,148,58,0.18);
-      --white:        #fff;
-      --font-display: 'Playfair Display', serif;
-      --font-body:    'Nunito', sans-serif;
+      --brown-deep:  #1a0d05;
+      --brown-rich:  #3b1a08;
+      --brown-mid:   #6b3a1f;
+      --gold:        #d4943a;
+      --gold-light:  #f0c060;
+      --cream:       #f5e8d0;
+      --pistachio:   #8ab840;
+      --white:       #fff;
+      --font-display:'Playfair Display', serif;
+      --font-body:   'Nunito', sans-serif;
+      --px: 1.25rem;
     }
 
     html { scroll-behavior: smooth; }
-
     body {
       background-color: var(--brown-deep);
       color: var(--cream);
@@ -36,97 +34,87 @@
     nav {
       position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 1.2rem 2.5rem;
-      background: linear-gradient(to bottom, rgba(26,13,5,0.95), transparent);
-      backdrop-filter: blur(4px);
+      padding: 1rem var(--px);
+      background: rgba(26,13,5,0.97);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(212,148,58,0.12);
     }
     .nav-logo {
       font-family: var(--font-display);
-      font-size: 1.5rem; font-weight: 900;
+      font-size: 1.35rem; font-weight: 900;
       color: var(--gold-light);
-      letter-spacing: 0.02em;
     }
     .nav-logo span { color: var(--pistachio); }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links { display: flex; gap: 1.6rem; list-style: none; }
     .nav-links a {
       color: var(--cream); text-decoration: none;
-      font-weight: 600; font-size: 0.9rem; letter-spacing: 0.08em;
+      font-weight: 600; font-size: 0.82rem; letter-spacing: 0.07em;
       text-transform: uppercase; transition: color 0.3s;
     }
     .nav-links a:hover { color: var(--gold-light); }
 
     /* ── HERO ── */
     .hero {
-      min-height: 100vh;
-      display: grid; grid-template-columns: 1fr 1fr;
-      align-items: center;
+      min-height: 100svh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
       position: relative; overflow: hidden;
-      padding: 6rem 2.5rem 2.5rem;
+      padding: 7rem var(--px) 3rem;
+      gap: 2.5rem;
     }
     .hero::before {
       content: '';
       position: absolute; inset: 0;
       background:
-        radial-gradient(ellipse 60% 60% at 75% 50%, rgba(107,58,31,0.5) 0%, transparent 70%),
-        radial-gradient(ellipse 40% 40% at 20% 80%, rgba(138,184,64,0.12) 0%, transparent 60%);
+        radial-gradient(ellipse 70% 50% at 50% 40%, rgba(107,58,31,0.55) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 20% 80%, rgba(138,184,64,0.10) 0%, transparent 60%);
       pointer-events: none;
     }
     .hero-text { position: relative; z-index: 2; }
     .hero-tag {
       display: inline-block;
-      background: var(--pistachio);
-      color: var(--brown-deep);
-      font-weight: 800; font-size: 0.75rem;
+      background: var(--pistachio); color: var(--brown-deep);
+      font-weight: 800; font-size: 0.72rem;
       letter-spacing: 0.15em; text-transform: uppercase;
-      padding: 0.4rem 1rem; border-radius: 100px;
-      margin-bottom: 1.5rem;
+      padding: 0.35rem 1rem; border-radius: 100px;
+      margin-bottom: 1.2rem;
       animation: fadeDown 0.6s ease both;
     }
     .hero-title {
       font-family: var(--font-display);
-      font-size: clamp(3rem, 6vw, 5.5rem);
-      line-height: 1.05;
-      font-weight: 900;
-      color: var(--white);
+      font-size: clamp(2.6rem, 10vw, 5.5rem);
+      line-height: 1.05; font-weight: 900; color: var(--white);
       animation: fadeDown 0.7s 0.1s ease both;
     }
-    .hero-title em {
-      font-style: italic;
-      color: var(--gold-light);
-      display: block;
-    }
+    .hero-title em { font-style: italic; color: var(--gold-light); display: block; }
     .hero-sub {
-      margin-top: 1.5rem;
-      font-size: 1.1rem; font-weight: 300; color: var(--cream);
-      line-height: 1.7; max-width: 420px;
+      margin-top: 1.2rem;
+      font-size: 1rem; font-weight: 300; color: var(--cream);
+      line-height: 1.7; max-width: 500px; margin-inline: auto;
       animation: fadeDown 0.7s 0.2s ease both;
     }
     .hero-ctas {
-      margin-top: 2.5rem; display: flex; gap: 1rem; flex-wrap: wrap;
+      margin-top: 2rem; display: flex; gap: 0.8rem;
+      flex-wrap: wrap; justify-content: center;
       animation: fadeDown 0.7s 0.3s ease both;
     }
     .btn-primary {
-      background: var(--gold);
-      color: var(--brown-deep);
-      padding: 0.9rem 2rem;
-      border-radius: 100px; font-weight: 800;
-      font-size: 1rem; text-decoration: none;
+      background: var(--gold); color: var(--brown-deep);
+      padding: 0.85rem 1.8rem; border-radius: 100px;
+      font-weight: 800; font-size: 1rem; text-decoration: none;
       transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
       box-shadow: 0 0 30px rgba(212,148,58,0.4);
+      white-space: nowrap;
     }
-    .btn-primary:hover {
-      background: var(--gold-light);
-      transform: translateY(-2px);
-      box-shadow: 0 0 50px rgba(240,192,96,0.5);
-    }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
     .btn-secondary {
-      background: transparent;
-      color: var(--cream);
-      padding: 0.9rem 2rem;
-      border-radius: 100px; font-weight: 600;
-      font-size: 1rem; text-decoration: none;
+      background: transparent; color: var(--cream);
+      padding: 0.85rem 1.8rem; border-radius: 100px;
+      font-weight: 600; font-size: 1rem; text-decoration: none;
       border: 1.5px solid rgba(245,232,208,0.4);
       transition: border-color 0.3s, color 0.3s;
+      white-space: nowrap;
     }
     .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
 
@@ -135,24 +123,21 @@
       display: flex; justify-content: center; align-items: center;
     }
     .hero-img-frame {
-      position: relative;
-      width: clamp(280px, 40vw, 520px);
-      height: clamp(320px, 45vw, 580px);
+      width: clamp(220px, 70vw, 400px);
+      height: clamp(260px, 80vw, 460px);
       border-radius: 40% 60% 55% 45% / 45% 45% 55% 55%;
       overflow: hidden;
       border: 3px solid rgba(212,148,58,0.3);
-      box-shadow: 0 0 80px rgba(212,148,58,0.25), inset 0 0 40px rgba(0,0,0,0.3);
+      box-shadow: 0 0 80px rgba(212,148,58,0.25);
       animation: float 6s ease-in-out infinite;
     }
     .hero-img-frame img { width: 100%; height: 100%; object-fit: cover; }
     .hero-badge {
-      position: absolute; bottom: -1.5rem; right: -1rem;
-      background: var(--pistachio);
-      color: var(--brown-deep);
-      font-weight: 900; font-size: 0.8rem;
+      position: absolute; bottom: -0.8rem; right: -0.5rem;
+      background: var(--pistachio); color: var(--brown-deep);
+      font-weight: 900; font-size: 0.72rem;
       text-align: center; line-height: 1.2;
-      width: 90px; height: 90px;
-      border-radius: 50%;
+      width: 76px; height: 76px; border-radius: 50%;
       display: flex; flex-direction: column;
       align-items: center; justify-content: center;
       box-shadow: 0 4px 20px rgba(138,184,64,0.4);
@@ -160,36 +145,30 @@
     }
 
     /* ── MARQUEE ── */
-    .marquee-wrap {
-      overflow: hidden;
-      background: var(--gold);
-      padding: 0.8rem 0;
-      margin-bottom: 0;
-    }
+    .marquee-wrap { overflow: hidden; background: var(--gold); padding: 0.75rem 0; }
     .marquee-track {
-      display: flex; gap: 3rem;
+      display: flex; gap: 2.5rem;
       animation: marquee 22s linear infinite;
       white-space: nowrap;
     }
     .marquee-track span {
       font-family: var(--font-display);
-      font-size: 1rem; font-weight: 700; font-style: italic;
+      font-size: 0.95rem; font-weight: 700; font-style: italic;
       color: var(--brown-deep); flex-shrink: 0;
     }
     .marquee-dot { color: var(--brown-mid); }
 
     /* ── SECTION GENERIC ── */
-    section { padding: 6rem 2.5rem; }
+    section { padding: 4rem var(--px); }
     .section-label {
-      font-size: 0.75rem; letter-spacing: 0.2em;
+      font-size: 0.72rem; letter-spacing: 0.2em;
       text-transform: uppercase; color: var(--gold);
-      font-weight: 800; margin-bottom: 0.8rem;
+      font-weight: 800; margin-bottom: 0.6rem;
     }
     .section-title {
       font-family: var(--font-display);
-      font-size: clamp(2rem, 4vw, 3.2rem);
-      font-weight: 900; line-height: 1.1;
-      color: var(--white);
+      font-size: clamp(1.8rem, 6vw, 3.2rem);
+      font-weight: 900; line-height: 1.1; color: var(--white);
     }
     .section-title em { font-style: italic; color: var(--gold-light); }
 
@@ -198,318 +177,305 @@
     .features-inner {
       max-width: 1200px; margin: 0 auto;
       display: grid; grid-template-columns: 1fr 1fr;
-      gap: 5rem; align-items: center;
+      gap: 4rem; align-items: center;
     }
     .features-cards {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem;
-      margin-top: 2.5rem;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+      margin-top: 2rem;
     }
     .feat-card {
       background: rgba(255,255,255,0.04);
       border: 1px solid rgba(212,148,58,0.15);
-      border-radius: 16px; padding: 1.5rem;
+      border-radius: 16px; padding: 1.2rem;
       transition: background 0.3s, border-color 0.3s, transform 0.3s;
     }
-    .feat-card:hover {
-      background: rgba(212,148,58,0.08);
-      border-color: rgba(212,148,58,0.4);
-      transform: translateY(-4px);
-    }
-    .feat-icon { font-size: 2rem; margin-bottom: 0.8rem; }
-    .feat-title { font-weight: 800; font-size: 1rem; color: var(--gold-light); margin-bottom: 0.4rem; }
-    .feat-desc { font-size: 0.88rem; color: rgba(245,232,208,0.7); line-height: 1.6; }
+    .feat-card:hover { background: rgba(212,148,58,0.08); border-color: rgba(212,148,58,0.4); transform: translateY(-4px); }
+    .feat-icon { font-size: 1.8rem; margin-bottom: 0.6rem; }
+    .feat-title { font-weight: 800; font-size: 0.95rem; color: var(--gold-light); margin-bottom: 0.3rem; }
+    .feat-desc { font-size: 0.84rem; color: rgba(245,232,208,0.7); line-height: 1.6; }
 
     .features-imgs { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
     .features-imgs img {
-      border-radius: 16px; width: 100%; aspect-ratio: 3/4;
-      object-fit: cover;
+      border-radius: 16px; width: 100%; aspect-ratio: 3/4; object-fit: cover;
       border: 2px solid rgba(212,148,58,0.2);
       transition: transform 0.4s, box-shadow 0.4s;
     }
     .features-imgs img:first-child { margin-top: 2rem; }
-    .features-imgs img:hover {
-      transform: scale(1.03);
-      box-shadow: 0 12px 40px rgba(212,148,58,0.25);
-    }
+    .features-imgs img:hover { transform: scale(1.03); box-shadow: 0 12px 40px rgba(212,148,58,0.25); }
 
-    /* ── MENU HIGHLIGHT ── */
+    /* ── MENU ── */
     .menu-section { background: var(--brown-deep); }
     .menu-inner { max-width: 1200px; margin: 0 auto; }
     .menu-header {
       display: flex; justify-content: space-between;
       align-items: flex-end; flex-wrap: wrap; gap: 1rem;
-      margin-bottom: 3rem;
+      margin-bottom: 2.5rem;
     }
-    .menu-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-    }
+    .menu-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.2rem; }
     .menu-card {
-      border-radius: 20px; overflow: hidden;
+      border-radius: 18px; overflow: hidden;
       background: var(--brown-rich);
       border: 1px solid rgba(212,148,58,0.15);
       transition: transform 0.3s, box-shadow 0.3s;
-      cursor: pointer;
     }
-    .menu-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-    }
-    .menu-card-img {
-      width: 100%; aspect-ratio: 4/3; object-fit: cover;
-      display: block;
-    }
-    .menu-card-body { padding: 1.2rem 1.4rem 1.6rem; }
+    .menu-card:hover { transform: translateY(-5px); box-shadow: 0 20px 60px rgba(0,0,0,0.4); }
+    .menu-card-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; }
+    .menu-card-body { padding: 1rem 1.2rem 1.4rem; }
     .menu-card-tag {
-      font-size: 0.7rem; letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--pistachio); font-weight: 800; margin-bottom: 0.4rem;
+      font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--pistachio); font-weight: 800; margin-bottom: 0.3rem;
     }
     .menu-card-name {
-      font-family: var(--font-display);
-      font-size: 1.25rem; font-weight: 700;
-      color: var(--white); margin-bottom: 0.5rem;
+      font-family: var(--font-display); font-size: 1.1rem; font-weight: 700;
+      color: var(--white); margin-bottom: 0.4rem;
     }
-    .menu-card-desc {
-      font-size: 0.85rem; color: rgba(245,232,208,0.65); line-height: 1.6;
-    }
+    .menu-card-desc { font-size: 0.82rem; color: rgba(245,232,208,0.65); line-height: 1.5; }
 
-    /* ── GALLERY STRIP ── */
-    .gallery-strip {
-      background: var(--brown-rich);
-      overflow: hidden; padding: 4rem 0;
-    }
+    /* ── GALLERY ── */
+    .gallery-strip { background: var(--brown-rich); overflow: hidden; padding: 3.5rem 0; }
+    .gallery-title { text-align: center; margin-bottom: 2rem; padding: 0 var(--px); }
     .gallery-scroll {
-      display: flex; gap: 1.2rem;
-      padding: 0 2.5rem;
+      display: flex; gap: 1rem; padding: 0 var(--px);
       overflow-x: auto; scroll-snap-type: x mandatory;
-      scrollbar-width: none;
+      scrollbar-width: none; -webkit-overflow-scrolling: touch;
     }
     .gallery-scroll::-webkit-scrollbar { display: none; }
     .gallery-scroll img {
       flex-shrink: 0;
-      width: clamp(200px, 28vw, 360px);
-      aspect-ratio: 3/4;
-      object-fit: cover;
-      border-radius: 20px;
-      scroll-snap-align: start;
+      width: clamp(160px, 55vw, 300px);
+      aspect-ratio: 3/4; object-fit: cover;
+      border-radius: 18px; scroll-snap-align: start;
       border: 2px solid rgba(212,148,58,0.2);
       transition: transform 0.4s;
     }
     .gallery-scroll img:hover { transform: scale(1.03); }
-    .gallery-title {
-      text-align: center;
-      margin-bottom: 2.5rem;
-    }
 
-    /* ── ORARI / CTA ── */
-    .cta-section {
-      background: linear-gradient(135deg, var(--brown-mid) 0%, var(--brown-rich) 100%);
-      text-align: center;
-      position: relative; overflow: hidden;
-    }
-    .cta-section::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse 70% 70% at 50% 50%, rgba(212,148,58,0.15) 0%, transparent 70%);
-    }
-    .cta-inner { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
-    .cta-time {
-      font-family: var(--font-display);
-      font-size: clamp(3rem, 8vw, 6rem);
-      font-weight: 900; color: var(--gold-light);
-      line-height: 1;
-      text-shadow: 0 0 60px rgba(240,192,96,0.4);
-      margin: 1.5rem 0;
-    }
-    .cta-days {
-      font-size: 1rem; letter-spacing: 0.12em;
-      text-transform: uppercase; color: var(--cream); font-weight: 600;
-      opacity: 0.8; margin-bottom: 2.5rem;
-    }
-
-    /* ── PERSONALIZZAZIONE ── */
+    /* ── PERSONALIZZA ── */
     .custom-section { background: var(--brown-deep); }
     .custom-inner {
-      max-width: 1200px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1.2fr;
-      gap: 5rem; align-items: center;
+      max-width: 900px; margin: 0 auto;
     }
-    .custom-img-wrap { position: relative; }
-    .custom-img-wrap img {
-      width: 100%; border-radius: 24px;
-      border: 2px solid rgba(212,148,58,0.25);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-    }
-    .custom-blob {
-      position: absolute;
-      top: -20px; left: -20px;
-      width: 120px; height: 120px;
-      background: var(--pistachio);
-      border-radius: 50%; opacity: 0.15;
-      filter: blur(30px);
-    }
+    .custom-inner .section-label,
+    .custom-inner .section-title { text-align: center; }
     .custom-list { margin-top: 2rem; display: flex; flex-direction: column; gap: 1rem; }
     .custom-item {
       display: flex; align-items: flex-start; gap: 1rem;
       background: rgba(255,255,255,0.03);
       border: 1px solid rgba(212,148,58,0.12);
-      border-radius: 14px; padding: 1.2rem;
+      border-radius: 14px; padding: 1.1rem;
       transition: border-color 0.3s;
     }
     .custom-item:hover { border-color: rgba(212,148,58,0.35); }
     .custom-num {
-      font-family: var(--font-display);
-      font-size: 1.8rem; font-weight: 900;
-      color: var(--gold); opacity: 0.5; line-height: 1;
-      flex-shrink: 0;
+      font-family: var(--font-display); font-size: 1.6rem; font-weight: 900;
+      color: var(--gold); opacity: 0.5; line-height: 1; flex-shrink: 0; min-width: 2rem;
     }
-    .custom-text h4 { font-weight: 800; color: var(--white); margin-bottom: 0.2rem; }
-    .custom-text p { font-size: 0.88rem; color: rgba(245,232,208,0.65); line-height: 1.6; }
-
-    /* ── FOOTER ── */
-    footer {
-      background: #0e0703;
-      padding: 3rem 2.5rem;
-      border-top: 1px solid rgba(212,148,58,0.15);
-    }
-    .footer-inner {
-      max-width: 1200px; margin: 0 auto;
-      display: flex; justify-content: space-between;
-      align-items: center; flex-wrap: wrap; gap: 1.5rem;
-    }
-    .footer-logo {
-      font-family: var(--font-display);
-      font-size: 1.8rem; font-weight: 900;
-      color: var(--gold-light);
-    }
-    .footer-logo span { color: var(--pistachio); }
-    .footer-info { text-align: center; }
-    .footer-info p { font-size: 0.9rem; color: rgba(245,232,208,0.5); line-height: 1.8; }
-    .footer-social { display: flex; gap: 1rem; }
-    .social-btn {
-      width: 42px; height: 42px; border-radius: 50%;
-      border: 1.5px solid rgba(212,148,58,0.3);
-      display: flex; align-items: center; justify-content: center;
-      text-decoration: none; font-size: 1rem;
-      color: var(--gold); transition: background 0.3s, border-color 0.3s;
-    }
-    .social-btn:hover { background: rgba(212,148,58,0.15); border-color: var(--gold); }
-    .footer-bottom {
-      max-width: 1200px; margin: 2rem auto 0;
-      text-align: center;
-      font-size: 0.78rem; color: rgba(245,232,208,0.25);
-      border-top: 1px solid rgba(255,255,255,0.05); padding-top: 1.5rem;
-    }
+    .custom-text h4 { font-weight: 800; color: var(--white); margin-bottom: 0.2rem; font-size: 1rem; }
+    .custom-text p { font-size: 0.86rem; color: rgba(245,232,208,0.65); line-height: 1.6; }
 
     /* ── RECENSIONI ── */
     .reviews-section { background: var(--brown-rich); }
     .reviews-inner { max-width: 1200px; margin: 0 auto; }
     .reviews-header {
       display: flex; justify-content: space-between;
-      align-items: flex-end; flex-wrap: wrap; gap: 1rem;
-      margin-bottom: 3rem;
+      align-items: flex-end; flex-wrap: wrap; gap: 1rem; margin-bottom: 2.5rem;
     }
-    .reviews-score {
-      display: flex; align-items: center; gap: 1.2rem;
-    }
+    .reviews-score { display: flex; align-items: center; gap: 1rem; }
     .score-big {
-      font-family: var(--font-display);
-      font-size: 4rem; font-weight: 900;
+      font-family: var(--font-display); font-size: 3.5rem; font-weight: 900;
       color: var(--gold-light); line-height: 1;
     }
-    .score-detail { display: flex; flex-direction: column; gap: 0.3rem; }
-    .stars { font-size: 1.4rem; letter-spacing: 0.1em; }
-    .score-count { font-size: 0.85rem; color: rgba(245,232,208,0.55); }
-    .reviews-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
-    }
+    .score-detail { display: flex; flex-direction: column; gap: 0.25rem; }
+    .stars { font-size: 1.2rem; letter-spacing: 0.08em; }
+    .score-count { font-size: 0.82rem; color: rgba(245,232,208,0.55); }
+    .reviews-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.2rem; }
     .review-card {
       background: rgba(255,255,255,0.04);
       border: 1px solid rgba(212,148,58,0.15);
-      border-radius: 20px; padding: 1.6rem;
-      display: flex; flex-direction: column; gap: 1rem;
+      border-radius: 18px; padding: 1.4rem;
+      display: flex; flex-direction: column; gap: 0.8rem;
       transition: border-color 0.3s, transform 0.3s;
     }
-    .review-card:hover {
-      border-color: rgba(212,148,58,0.35);
-      transform: translateY(-4px);
-    }
-    .review-stars { font-size: 1rem; letter-spacing: 0.08em; }
+    .review-card:hover { border-color: rgba(212,148,58,0.35); transform: translateY(-4px); }
+    .review-stars { font-size: 0.95rem; }
     .review-text {
-      font-size: 0.92rem; line-height: 1.7;
-      color: rgba(245,232,208,0.85);
-      flex: 1;
-      font-style: italic;
+      font-size: 0.9rem; line-height: 1.7;
+      color: rgba(245,232,208,0.85); flex: 1; font-style: italic;
     }
-    .review-text::before { content: '"'; font-size: 1.5rem; color: var(--gold); line-height: 0; vertical-align: -0.4em; margin-right: 2px; }
-    .review-text::after  { content: '"'; font-size: 1.5rem; color: var(--gold); line-height: 0; vertical-align: -0.4em; margin-left: 2px; }
+    .review-text::before { content: '"'; font-size: 1.4rem; color: var(--gold); line-height: 0; vertical-align: -0.35em; margin-right: 2px; }
+    .review-text::after  { content: '"'; font-size: 1.4rem; color: var(--gold); line-height: 0; vertical-align: -0.35em; margin-left: 2px; }
     .review-author {
-      display: flex; align-items: center; gap: 0.8rem;
-      padding-top: 1rem;
-      border-top: 1px solid rgba(212,148,58,0.1);
+      display: flex; align-items: center; gap: 0.7rem;
+      padding-top: 0.8rem; border-top: 1px solid rgba(212,148,58,0.1);
     }
     .review-avatar {
-      width: 36px; height: 36px; border-radius: 50%;
-      background: var(--brown-mid);
-      display: flex; align-items: center; justify-content: center;
-      font-weight: 800; font-size: 0.9rem; color: var(--gold-light);
-      flex-shrink: 0;
+      width: 34px; height: 34px; border-radius: 50%;
+      background: var(--brown-mid); display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 0.88rem; color: var(--gold-light); flex-shrink: 0;
     }
-    .review-name { font-weight: 800; font-size: 0.88rem; color: var(--white); }
-    .review-source { font-size: 0.75rem; color: rgba(245,232,208,0.4); }
-    .reviews-cta {
-      text-align: center; margin-top: 2.5rem;
-    }
+    .review-name { font-weight: 800; font-size: 0.86rem; color: var(--white); }
+    .review-source { font-size: 0.72rem; color: rgba(245,232,208,0.4); }
+    .reviews-cta { text-align: center; margin-top: 2rem; }
     .btn-outline-gold {
-      display: inline-block;
-      border: 1.5px solid var(--gold);
-      color: var(--gold);
-      padding: 0.8rem 2rem; border-radius: 100px;
-      font-weight: 700; font-size: 0.9rem;
-      text-decoration: none; letter-spacing: 0.05em;
-      transition: background 0.3s, color 0.3s;
+      display: inline-block; border: 1.5px solid var(--gold); color: var(--gold);
+      padding: 0.8rem 1.8rem; border-radius: 100px; font-weight: 700; font-size: 0.9rem;
+      text-decoration: none; letter-spacing: 0.05em; transition: background 0.3s, color 0.3s;
     }
     .btn-outline-gold:hover { background: var(--gold); color: var(--brown-deep); }
 
-    /* ── ANIMATIONS ── */
-    @keyframes fadeDown {
-      from { opacity: 0; transform: translateY(-18px); }
-      to   { opacity: 1; transform: translateY(0); }
+    /* ── CTA ORARI ── */
+    .cta-section {
+      background: linear-gradient(135deg, var(--brown-mid) 0%, var(--brown-rich) 100%);
+      text-align: center; position: relative; overflow: hidden;
     }
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50%       { transform: translateY(-14px); }
+    .cta-section::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 70% 70% at 50% 50%, rgba(212,148,58,0.15) 0%, transparent 70%);
     }
-    @keyframes spin-slow {
-      from { transform: rotate(0deg); }
-      to   { transform: rotate(360deg); }
+    .cta-inner { position: relative; z-index: 1; max-width: 600px; margin: 0 auto; }
+    .cta-time {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 12vw, 5.5rem);
+      font-weight: 900; color: var(--gold-light); line-height: 1;
+      text-shadow: 0 0 60px rgba(240,192,96,0.4); margin: 1.2rem 0;
     }
-    @keyframes marquee {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
+    .cta-days {
+      font-size: 0.9rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--cream); font-weight: 600; opacity: 0.8; margin-bottom: 2rem;
     }
 
-    /* ── RESPONSIVE ── */
-    @media (max-width: 900px) {
-      .hero { grid-template-columns: 1fr; text-align: center; padding-top: 8rem; }
-      .hero-image { margin-top: 3rem; }
-      .hero-sub { margin: 1.5rem auto 0; }
-      .hero-ctas { justify-content: center; }
-      .features-inner { grid-template-columns: 1fr; }
-      .features-imgs { order: -1; }
-      .menu-grid { grid-template-columns: 1fr 1fr; }
-      .reviews-grid { grid-template-columns: 1fr; }
-      .reviews-header { flex-direction: column; align-items: flex-start; }
-      .custom-inner { grid-template-columns: 1fr; }
-      nav { padding: 1rem 1.5rem; }
-      .nav-links { display: none; }
+    /* ── FOOTER ── */
+    footer {
+      background: #0e0703; padding: 2.5rem var(--px);
+      border-top: 1px solid rgba(212,148,58,0.15);
     }
-    @media (max-width: 600px) {
+    .footer-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: wrap; gap: 1.2rem;
+    }
+    .footer-logo { font-family: var(--font-display); font-size: 1.6rem; font-weight: 900; color: var(--gold-light); }
+    .footer-logo span { color: var(--pistachio); }
+    .footer-info { text-align: center; }
+    .footer-info p { font-size: 0.88rem; color: rgba(245,232,208,0.5); line-height: 1.8; }
+    .footer-social { display: flex; gap: 0.8rem; }
+    .social-btn {
+      width: 42px; height: 42px; border-radius: 50%;
+      border: 1.5px solid rgba(212,148,58,0.3);
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none; font-size: 1rem; color: var(--gold);
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .social-btn:hover { background: rgba(212,148,58,0.15); border-color: var(--gold); }
+    .footer-bottom {
+      max-width: 1200px; margin: 1.5rem auto 0; text-align: center;
+      font-size: 0.75rem; color: rgba(245,232,208,0.25);
+      border-top: 1px solid rgba(255,255,255,0.05); padding-top: 1.2rem;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeDown { from { opacity: 0; transform: translateY(-18px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
+    @keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ════════════════════════════════════
+       MOBILE RESPONSIVE — max 768px
+    ════════════════════════════════════ */
+    @media (max-width: 768px) {
+
+      :root { --px: 1rem; }
+
+      /* NAV */
+      nav { padding: 0.85rem var(--px); }
+      .nav-links { display: none; }
+
+      /* HERO */
+      .hero {
+        padding: 6rem var(--px) 2.5rem;
+        gap: 2rem;
+        min-height: 100svh;
+      }
+      .hero-title { font-size: clamp(2.4rem, 11vw, 3.5rem); }
+      .hero-sub { font-size: 0.95rem; }
+      .hero-ctas { gap: 0.7rem; }
+      .btn-primary, .btn-secondary { font-size: 0.95rem; padding: 0.8rem 1.5rem; }
+      .hero-img-frame {
+        width: clamp(200px, 72vw, 340px);
+        height: clamp(240px, 85vw, 400px);
+      }
+      .hero-badge { width: 66px; height: 66px; font-size: 0.65rem; bottom: -0.5rem; right: -0.3rem; }
+
+      /* FEATURES */
+      .features { padding: 2.5rem var(--px); }
+      .features-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .features-imgs {
+        order: -1;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.8rem;
+      }
+      .features-imgs img { aspect-ratio: 1/1; }
+      .features-imgs img:first-child { margin-top: 0; }
+      .features-cards { grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+      .feat-card { padding: 1rem; }
+      .feat-icon { font-size: 1.5rem; margin-bottom: 0.4rem; }
+      .feat-title { font-size: 0.88rem; }
+      .feat-desc { font-size: 0.8rem; }
+
+      /* MENU */
+      .menu-section { padding: 3rem var(--px); }
+      .menu-header { flex-direction: column; align-items: flex-start; gap: 1rem; margin-bottom: 1.5rem; }
+      .menu-header .btn-primary { align-self: stretch; text-align: center; }
+      .menu-grid { grid-template-columns: 1fr 1fr; gap: 0.9rem; }
+      .menu-card-body { padding: 0.8rem 0.9rem 1.1rem; }
+      .menu-card-name { font-size: 0.95rem; }
+      .menu-card-desc { font-size: 0.78rem; }
+
+      /* GALLERY */
+      .gallery-strip { padding: 3rem 0; }
+      .gallery-title { margin-bottom: 1.5rem; }
+      .gallery-scroll img { width: clamp(150px, 60vw, 250px); border-radius: 14px; }
+
+      /* PERSONALIZZA */
+      .custom-section { padding: 3rem var(--px); }
+      .custom-inner { max-width: 100%; }
+      .custom-inner .section-label,
+      .custom-inner .section-title { text-align: left; }
+      .custom-list { margin-top: 1.5rem; gap: 0.8rem; }
+      .custom-item { padding: 0.9rem; }
+      .custom-num { font-size: 1.4rem; min-width: 1.8rem; }
+      .custom-text h4 { font-size: 0.95rem; }
+      .custom-text p { font-size: 0.82rem; }
+
+      /* RECENSIONI */
+      .reviews-section { padding: 3rem var(--px); }
+      .reviews-header { flex-direction: column; align-items: flex-start; gap: 1rem; margin-bottom: 1.8rem; }
+      .score-big { font-size: 3rem; }
+      .reviews-grid { grid-template-columns: 1fr; gap: 0.9rem; }
+      .review-card { padding: 1.2rem; }
+
+      /* CTA ORARI */
+      .cta-section { padding: 3.5rem var(--px); }
+      .cta-time { font-size: clamp(2.2rem, 13vw, 4rem); }
+      .cta-days { font-size: 0.82rem; letter-spacing: 0.07em; }
+
+      /* FOOTER */
+      footer { padding: 2rem var(--px); }
+      .footer-inner {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 1rem;
+      }
+      .footer-info { order: 2; }
+      .footer-social { order: 3; }
+    }
+
+    /* Extra small — max 400px */
+    @media (max-width: 400px) {
       .menu-grid { grid-template-columns: 1fr; }
       .features-cards { grid-template-columns: 1fr; }
-      .features-imgs { grid-template-columns: 1fr; }
+      .hero-title { font-size: 2.2rem; }
     }
   </style>
 </head>
@@ -545,10 +511,7 @@
     </div>
     <div class="hero-image">
       <div class="hero-img-frame">
-        <img
-          src="image.jpg"
-          alt="Trancetto al cioccolato con glassa lucida e decorazione di cioccolato bianco"
-        />
+        <img src="image.jpg" alt="Trancetto al cioccolato con glassa lucida e decorazione di cioccolato bianco" />
       </div>
       <div class="hero-badge">OPEN<br>LATE<br>NIGHT</div>
     </div>
@@ -604,19 +567,13 @@
         </div>
       </div>
       <div class="features-imgs">
-        <img
-          src="2image.jpg"
-          alt="Trancetto al pistacchio con crema abbondante e granella verde"
-        />
-        <img
-          src="3image.jpg"
-          alt="Trancetto con crema pasticcera al limone e more fresche su zucchero a velo"
-        />
+        <img src="2image.jpg" alt="Trancetto al pistacchio con crema abbondante e granella verde" />
+        <img src="3image.jpg" alt="Trancetto con crema pasticcera al limone e more fresche su zucchero a velo" />
       </div>
     </div>
   </section>
 
-  <!-- MENU HIGHLIGHT -->
+  <!-- MENU -->
   <section class="menu-section" id="menu">
     <div class="menu-inner">
       <div class="menu-header">
@@ -628,11 +585,7 @@
       </div>
       <div class="menu-grid">
         <div class="menu-card">
-          <img
-            class="menu-card-img"
-            src="image.jpg"
-            alt="Trancetto al cioccolato fondente con glassa e decorazioni"
-          />
+          <img class="menu-card-img" src="image.jpg" alt="Cubo alla crema con glassa e decorazioni" />
           <div class="menu-card-body">
             <div class="menu-card-tag">Best seller</div>
             <div class="menu-card-name">Cubo alla Crema</div>
@@ -640,23 +593,15 @@
           </div>
         </div>
         <div class="menu-card">
-          <img
-            class="menu-card-img"
-            src="2image.jpg"
-            alt="Trancetto al pistacchio con crema abbondante e pistacchi tritati"
-          />
+          <img class="menu-card-img" src="2image.jpg" alt="Bombe di tutti i gusti nel vassoio" />
           <div class="menu-card-body">
             <div class="menu-card-tag">Fan favourite</div>
             <div class="menu-card-name">Bombe</div>
-            <div class="menu-card-desc">Bombe di tutti i gusti, nutella, cioccolato bianco, pistacchio, crema, nocciola e tanti altri...</div>
+            <div class="menu-card-desc">Nutella, cioccolato bianco, pistacchio, crema, nocciola e tanti altri...</div>
           </div>
         </div>
         <div class="menu-card">
-          <img
-            class="menu-card-img"
-            src="6image.jpg"
-            alt="Cornetti Kinder Bueno con bastoncini di cioccolato e crema bianca"
-          />
+          <img class="menu-card-img" src="6image.jpg" alt="Cornetti Kinder Bueno con bastoncini di cioccolato" />
           <div class="menu-card-body">
             <div class="menu-card-tag">Esclusiva</div>
             <div class="menu-card-name">Conchiglia Al Cioccolato</div>
@@ -664,23 +609,15 @@
           </div>
         </div>
         <div class="menu-card">
-          <img
-            class="menu-card-img"
-            src="3image.jpg"
-            alt="Trancetto con crema al limone e more fresche su zucchero a velo"
-          />
+          <img class="menu-card-img" src="3image.jpg" alt="Trancetto con crema al limone e more fresche" />
           <div class="menu-card-body">
             <div class="menu-card-tag">Classico</div>
             <div class="menu-card-name">Fagottini Al Cioccolato</div>
-            <div class="menu-card-desc">Fagottini al cioccolato con sfoglia croccante e granella di cioccolato sopra.</div>
+            <div class="menu-card-desc">Sfoglia croccante con granella di cioccolato sopra.</div>
           </div>
         </div>
         <div class="menu-card">
-          <img
-            class="menu-card-img"
-            src="5image.jpg"
-            alt="Bomboloni farciti con creme colorate in bella mostra nel vassoio"
-          />
+          <img class="menu-card-img" src="5image.jpg" alt="Bomboloni farciti con creme colorate" />
           <div class="menu-card-body">
             <div class="menu-card-tag">Classico</div>
             <div class="menu-card-name">Cornetto Kinder</div>
@@ -688,15 +625,11 @@
           </div>
         </div>
         <div class="menu-card">
-          <img
-            class="menu-card-img"
-            src="8image.jpg"
-            alt="Pain au chocolat e sfogliatine salate dorate in teglia"
-          />
+          <img class="menu-card-img" src="8image.jpg" alt="Pain au chocolat e sfogliatine dorate in teglia" />
           <div class="menu-card-body">
             <div class="menu-card-tag">Sfoglia</div>
             <div class="menu-card-name">Cubo Al Cioccolato</div>
-            <div class="menu-card-desc">Cornetto a forma di cubo con glassa al cioccolato e sopra kinder a scelta..</div>
+            <div class="menu-card-desc">Cubo con glassa al cioccolato e kinder a scelta sopra.</div>
           </div>
         </div>
       </div>
@@ -706,8 +639,8 @@
   <!-- GALLERY -->
   <section class="gallery-strip" id="galleria">
     <div class="gallery-title">
-      <p class="section-label" style="text-align:center;">Galleria</p>
-      <h2 class="section-title" style="text-align:center;">Scorri e<br><em>fatti venire fame.</em></h2>
+      <p class="section-label">Galleria</p>
+      <h2 class="section-title">Scorri e<br><em>fatti venire fame.</em></h2>
     </div>
     <div class="gallery-scroll">
       <img src="image.jpg"   alt="Trancetto al cioccolato con glassa lucida" />
@@ -724,39 +657,35 @@
   <!-- PERSONALIZZA -->
   <section class="custom-section" id="personalizza">
     <div class="custom-inner">
-      <div class="custom-img-wrap">
-      </div>
-      <div>
-        <p class="section-label">Come funziona</p>
-        <h2 class="section-title">Il tuo cornetto,<br><em>a modo tuo.</em></h2>
-        <div class="custom-list">
-          <div class="custom-item">
-            <div class="custom-num">01</div>
-            <div class="custom-text">
-              <h4>Scegli la base</h4>
-              <p>Cornetto sfogliato, bombolone, pain au chocolat o trancetto — tu decidi il punto di partenza.</p>
-            </div>
+      <p class="section-label">Come funziona</p>
+      <h2 class="section-title">Il tuo cornetto,<br><em>a modo tuo.</em></h2>
+      <div class="custom-list">
+        <div class="custom-item">
+          <div class="custom-num">01</div>
+          <div class="custom-text">
+            <h4>Scegli la base</h4>
+            <p>Cornetto sfogliato, bombolone, pain au chocolat o trancetto — tu decidi il punto di partenza.</p>
           </div>
-          <div class="custom-item">
-            <div class="custom-num">02</div>
-            <div class="custom-text">
-              <h4>Scegli il ripieno</h4>
-              <p>Cioccolato, pistacchio, crema classica, Kinder, limone, nocciola… e le novità del giorno.</p>
-            </div>
+        </div>
+        <div class="custom-item">
+          <div class="custom-num">02</div>
+          <div class="custom-text">
+            <h4>Scegli il ripieno</h4>
+            <p>Cioccolato, pistacchio, crema classica, Kinder, limone, nocciola… e le novità del giorno.</p>
           </div>
-          <div class="custom-item">
-            <div class="custom-num">03</div>
-            <div class="custom-text">
-              <h4>Abbondanza garantita</h4>
-              <p>Niente risparmio: qui il ripieno si vede, si sente e lascia il segno. Promesso.</p>
-            </div>
+        </div>
+        <div class="custom-item">
+          <div class="custom-num">03</div>
+          <div class="custom-text">
+            <h4>Abbondanza garantita</h4>
+            <p>Niente risparmio: qui il ripieno si vede, si sente e lascia il segno. Promesso.</p>
           </div>
-          <div class="custom-item">
-            <div class="custom-num">04</div>
-            <div class="custom-text">
-              <h4>Goditi il momento</h4>
-              <p>Di giorno, di sera, a tarda notte. Siamo qui. Il cornetto ti aspetta caldo.</p>
-            </div>
+        </div>
+        <div class="custom-item">
+          <div class="custom-num">04</div>
+          <div class="custom-text">
+            <h4>Goditi il momento</h4>
+            <p>Di giorno, di sera, a tarda notte. Siamo qui. Il cornetto ti aspetta caldo.</p>
           </div>
         </div>
       </div>
@@ -785,10 +714,7 @@
           <p class="review-text">Il cornetto al pistacchio è il migliore che abbia mai mangiato in vita mia. Me ne sono innamorata.</p>
           <div class="review-author">
             <div class="review-avatar">S</div>
-            <div>
-              <div class="review-name">Sara B.</div>
-              <div class="review-source">Google Maps</div>
-            </div>
+            <div><div class="review-name">Sara B.</div><div class="review-source">Google Maps</div></div>
           </div>
         </div>
         <div class="review-card">
@@ -796,21 +722,15 @@
           <p class="review-text">Ci sono passato alle 1:30 di notte per un maritozzo con la panna… ora è diventata la tappa fissa. Servizio ottimo e maritozzo sublime.</p>
           <div class="review-author">
             <div class="review-avatar">M</div>
-            <div>
-              <div class="review-name">Marco C.</div>
-              <div class="review-source">Google Maps</div>
-            </div>
+            <div><div class="review-name">Marco C.</div><div class="review-source">Google Maps</div></div>
           </div>
         </div>
         <div class="review-card">
           <div class="review-stars">⭐⭐⭐⭐⭐</div>
-          <p class="review-text">Tantissima scelta di gusti e qualità. Il locale è completamente nuovo e pulitissimo — e la pulizia in un locale è la prima cosa!</p>
+          <p class="review-text">Tantissima scelta di gusti e qualità. Il locale è completamente nuovo e pulitissimo — la pulizia in un locale è la prima cosa!</p>
           <div class="review-author">
             <div class="review-avatar">D</div>
-            <div>
-              <div class="review-name">D. S.</div>
-              <div class="review-source">Google Maps</div>
-            </div>
+            <div><div class="review-name">D. S.</div><div class="review-source">Google Maps</div></div>
           </div>
         </div>
         <div class="review-card">
@@ -818,10 +738,7 @@
           <p class="review-text">Cornetti buonissimi! Il personale al bancone è gentilissimo. Torneremo sicuramente!</p>
           <div class="review-author">
             <div class="review-avatar">V</div>
-            <div>
-              <div class="review-name">Veronica M.</div>
-              <div class="review-source">Google Maps</div>
-            </div>
+            <div><div class="review-name">Veronica M.</div><div class="review-source">Google Maps</div></div>
           </div>
         </div>
         <div class="review-card">
@@ -829,10 +746,7 @@
           <p class="review-text">Ottimo servizio, buon rapporto qualità-prezzo. Difficoltà a trovare parcheggio, ma assolutamente da tornarci!</p>
           <div class="review-author">
             <div class="review-avatar">R</div>
-            <div>
-              <div class="review-name">Roberto F.</div>
-              <div class="review-source">Google Maps</div>
-            </div>
+            <div><div class="review-name">Roberto F.</div><div class="review-source">Google Maps</div></div>
           </div>
         </div>
         <div class="review-card">
@@ -840,10 +754,7 @@
           <p class="review-text">Buonissimo tutto, provare per credere! Se capiti all'orario giusto ti delizi con cornetti e danesi appena sfornati — crea dipendenza!</p>
           <div class="review-author">
             <div class="review-avatar">C</div>
-            <div>
-              <div class="review-name">Crenabog R.</div>
-              <div class="review-source">Google Maps</div>
-            </div>
+            <div><div class="review-name">Crenabog R.</div><div class="review-source">Google Maps</div></div>
           </div>
         </div>
       </div>
@@ -860,10 +771,10 @@
       <h2 class="section-title">Vieni quando<br><em>ti va.</em></h2>
       <div class="cta-time">18:00 – 3:00</div>
       <p class="cta-days">Aperto tutti i giorni — incluso weekend e festivi</p>
-      <p style="color:rgba(245,232,208,0.65); font-size:1rem; margin-bottom:2.5rem;">
+      <p style="color:rgba(245,232,208,0.65); font-size:0.95rem; margin-bottom:2rem; line-height:1.9;">
         📍 Via Tuscolana, 584 — Roma (RM)<br>
         🚇 Fermata Arco di Travertino<br>
-        📞 <a href="tel:+393920547036" style="color:var(--gold-light); text-decoration:none;">392 054 7036</a>
+        📞 <a href="tel:+393920547036" style="color:var(--gold-light); text-decoration:none; font-weight:700;">392 054 7036</a>
       </p>
       <a href="tel:+393920547036" class="btn-primary">Chiamaci ora</a>
     </div>

@@ -203,34 +203,48 @@
     .features-imgs img:first-child { margin-top: 2rem; }
     .features-imgs img:hover { transform: scale(1.03); box-shadow: 0 12px 40px rgba(212,148,58,0.25); }
 
-    /* ── MENU ── */
+    /* ── MENU HIGHLIGHT ── */
     .menu-section { background: var(--brown-deep); }
     .menu-inner { max-width: 1200px; margin: 0 auto; }
     .menu-header {
       display: flex; justify-content: space-between;
       align-items: flex-end; flex-wrap: wrap; gap: 1rem;
-      margin-bottom: 2.5rem;
+      margin-bottom: 3rem;
     }
-    .menu-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.2rem; }
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
     .menu-card {
-      border-radius: 18px; overflow: hidden;
+      border-radius: 20px; overflow: hidden;
       background: var(--brown-rich);
       border: 1px solid rgba(212,148,58,0.15);
       transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
     }
-    .menu-card:hover { transform: translateY(-5px); box-shadow: 0 20px 60px rgba(0,0,0,0.4); }
-    .menu-card-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; }
-    .menu-card-body { padding: 1rem 1.2rem 1.4rem; }
+    .menu-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    }
+    .menu-card-img {
+      width: 100%; aspect-ratio: 4/3; object-fit: cover;
+      display: block;
+    }
+    .menu-card-body { padding: 1.2rem 1.4rem 1.6rem; }
     .menu-card-tag {
-      font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
-      color: var(--pistachio); font-weight: 800; margin-bottom: 0.3rem;
+      font-size: 0.7rem; letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--pistachio); font-weight: 800; margin-bottom: 0.4rem;
     }
     .menu-card-name {
-      font-family: var(--font-display); font-size: 1.1rem; font-weight: 700;
-      color: var(--white); margin-bottom: 0.4rem;
+      font-family: var(--font-display);
+      font-size: 1.25rem; font-weight: 700;
+      color: var(--white); margin-bottom: 0.5rem;
     }
-    .menu-card-desc { font-size: 0.82rem; color: rgba(245,232,208,0.65); line-height: 1.5; }
-
+    .menu-card-desc {
+      font-size: 0.85rem; color: rgba(245,232,208,0.65); line-height: 1.6;
+    }
     /* ── GALLERY ── */
     .gallery-strip { background: var(--brown-rich); overflow: hidden; padding: 3.5rem 0; }
     .gallery-title { text-align: center; margin-bottom: 2rem; padding: 0 var(--px); }

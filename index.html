@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cornetto Mania — La Cornetteria che non dorme mai</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Nunito:wght@300;400;600;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --brown-deep:   #1a0d05;
+      --brown-rich:   #3b1a08;
+      --brown-mid:    #6b3a1f;
+      --gold:         #d4943a;
+      --gold-light:   #f0c060;
+      --cream:        #f5e8d0;
+      --pistachio:    #8ab840;
+      --pistachio-l:  #b8d96a;
+      --choco-glow:   rgba(212,148,58,0.18);
+      --white:        #fff;
+      --font-display: 'Playfair Display', serif;
+      --font-body:    'Nunito', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--brown-deep);
+      color: var(--cream);
+      font-family: var(--font-body);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 2.5rem;
+      background: linear-gradient(to bottom, rgba(26,13,5,0.95), transparent);
+      backdrop-filter: blur(4px);
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.5rem; font-weight: 900;
+      color: var(--gold-light);
+      letter-spacing: 0.02em;
+    }
+    .nav-logo span { color: var(--pistachio); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--cream); text-decoration: none;
+      font-weight: 600; font-size: 0.9rem; letter-spacing: 0.08em;
+      text-transform: uppercase; transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--gold-light); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid; grid-template-columns: 1fr 1fr;
+      align-items: center;
+      position: relative; overflow: hidden;
+      padding: 6rem 2.5rem 2.5rem;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 60% 60% at 75% 50%, rgba(107,58,31,0.5) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 20% 80%, rgba(138,184,64,0.12) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-text { position: relative; z-index: 2; }
+    .hero-tag {
+      display: inline-block;
+      background: var(--pistachio);
+      color: var(--brown-deep);
+      font-weight: 800; font-size: 0.75rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      padding: 0.4rem 1rem; border-radius: 100px;
+      margin-bottom: 1.5rem;
+      animation: fadeDown 0.6s ease both;
+    }
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      line-height: 1.05;
+      font-weight: 900;
+      color: var(--white);
+      animation: fadeDown 0.7s 0.1s ease both;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--gold-light);
+      display: block;
+    }
+    .hero-sub {
+      margin-top: 1.5rem;
+      font-size: 1.1rem; font-weight: 300; color: var(--cream);
+      line-height: 1.7; max-width: 420px;
+      animation: fadeDown 0.7s 0.2s ease both;
+    }
+    .hero-ctas {
+      margin-top: 2.5rem; display: flex; gap: 1rem; flex-wrap: wrap;
+      animation: fadeDown 0.7s 0.3s ease both;
+    }
+    .btn-primary {
+      background: var(--gold);
+      color: var(--brown-deep);
+      padding: 0.9rem 2rem;
+      border-radius: 100px; font-weight: 800;
+      font-size: 1rem; text-decoration: none;
+      transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+      box-shadow: 0 0 30px rgba(212,148,58,0.4);
+    }
+    .btn-primary:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+      box-shadow: 0 0 50px rgba(240,192,96,0.5);
+    }
+    .btn-secondary {
+      background: transparent;
+      color: var(--cream);
+      padding: 0.9rem 2rem;
+      border-radius: 100px; font-weight: 600;
+      font-size: 1rem; text-decoration: none;
+      border: 1.5px solid rgba(245,232,208,0.4);
+      transition: border-color 0.3s, color 0.3s;
+    }
+    .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
+
+    .hero-image {
+      position: relative; z-index: 2;
+      display: flex; justify-content: center; align-items: center;
+    }
+    .hero-img-frame {
+      position: relative;
+      width: clamp(280px, 40vw, 520px);
+      height: clamp(320px, 45vw, 580px);
+      border-radius: 40% 60% 55% 45% / 45% 45% 55% 55%;
+      overflow: hidden;
+      border: 3px solid rgba(212,148,58,0.3);
+      box-shadow: 0 0 80px rgba(212,148,58,0.25), inset 0 0 40px rgba(0,0,0,0.3);
+      animation: float 6s ease-in-out infinite;
+    }
+    .hero-img-frame img { width: 100%; height: 100%; object-fit: cover; }
+    .hero-badge {
+      position: absolute; bottom: -1.5rem; right: -1rem;
+      background: var(--pistachio);
+      color: var(--brown-deep);
+      font-weight: 900; font-size: 0.8rem;
+      text-align: center; line-height: 1.2;
+      width: 90px; height: 90px;
+      border-radius: 50%;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      box-shadow: 0 4px 20px rgba(138,184,64,0.4);
+      animation: spin-slow 12s linear infinite;
+    }
+
+    /* ── MARQUEE ── */
+    .marquee-wrap {
+      overflow: hidden;
+      background: var(--gold);
+      padding: 0.8rem 0;
+    }
+    .marquee-track {
+      display: flex; gap: 3rem;
+      animation: marquee 22s linear infinite;
+      white-space: nowrap;
+    }
+    .marquee-track span {
+      font-family: var(--font-display);
+      font-size: 1rem; font-weight: 700; font-style: italic;
+      color: var(--brown-deep); flex-shrink: 0;
+    }
+    .marquee-dot { color: var(--brown-mid); }
+
+    /* ── SECTION GENERIC ── */
+    section { padding: 6rem 2.5rem; }
+    .section-label {
+      font-size: 0.75rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--gold);
+      font-weight: 800; margin-bottom: 0.8rem;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 900; line-height: 1.1;
+      color: var(--white);
+    }
+    .section-title em { font-style: italic; color: var(--gold-light); }
+
+    /* ── FEATURES ── */
+    .features { background: var(--brown-rich); }
+    .features-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5rem; align-items: center;
+    }
+    .features-cards {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem;
+      margin-top: 2.5rem;
+    }
+    .feat-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(212,148,58,0.15);
+      border-radius: 16px; padding: 1.5rem;
+      transition: background 0.3s, border-color 0.3s, transform 0.3s;
+    }
+    .feat-card:hover {
+      background: rgba(212,148,58,0.08);
+      border-color: rgba(212,148,58,0.4);
+      transform: translateY(-4px);
+    }
+    .feat-icon { font-size: 2rem; margin-bottom: 0.8rem; }
+    .feat-title { font-weight: 800; font-size: 1rem; color: var(--gold-light); margin-bottom: 0.4rem; }
+    .feat-desc { font-size: 0.88rem; color: rgba(245,232,208,0.7); line-height: 1.6; }
+
+    .features-imgs { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .features-imgs img {
+      border-radius: 16px; width: 100%; aspect-ratio: 3/4;
+      object-fit: cover;
+      border: 2px solid rgba(212,148,58,0.2);
+      transition: transform 0.4s, box-shadow 0.4s;
+    }
+    .features-imgs img:first-child { margin-top: 2rem; }
+    .features-imgs img:hover {
+      transform: scale(1.03);
+      box-shadow: 0 12px 40px rgba(212,148,58,0.25);
+    }
+
+    /* ── MENU HIGHLIGHT ── */
+    .menu-section { background: var(--brown-deep); }
+    .menu-inner { max-width: 1200px; margin: 0 auto; }
+    .menu-header {
+      display: flex; justify-content: space-between;
+      align-items: flex-end; flex-wrap: wrap; gap: 1rem;
+      margin-bottom: 3rem;
+    }
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .menu-card {
+      border-radius: 20px; overflow: hidden;
+      background: var(--brown-rich);
+      border: 1px solid rgba(212,148,58,0.15);
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+    }
+    .menu-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    }
+    .menu-card-img {
+      width: 100%; aspect-ratio: 4/3; object-fit: cover;
+      display: block;
+    }
+    .menu-card-body { padding: 1.2rem 1.4rem 1.6rem; }
+    .menu-card-tag {
+      font-size: 0.7rem; letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--pistachio); font-weight: 800; margin-bottom: 0.4rem;
+    }
+    .menu-card-name {
+      font-family: var(--font-display);
+      font-size: 1.25rem; font-weight: 700;
+      color: var(--white); margin-bottom: 0.5rem;
+    }
+    .menu-card-desc {
+      font-size: 0.85rem; color: rgba(245,232,208,0.65); line-height: 1.6;
+    }
+
+    /* ── GALLERY STRIP ── */
+    .gallery-strip {
+      background: var(--brown-rich);
+      overflow: hidden; padding: 4rem 0;
+    }
+    .gallery-scroll {
+      display: flex; gap: 1.2rem;
+      padding: 0 2.5rem;
+      overflow-x: auto; scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+    }
+    .gallery-scroll::-webkit-scrollbar { display: none; }
+    .gallery-scroll img {
+      flex-shrink: 0;
+      width: clamp(200px, 28vw, 360px);
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      border-radius: 20px;
+      scroll-snap-align: start;
+      border: 2px solid rgba(212,148,58,0.2);
+      transition: transform 0.4s;
+    }
+    .gallery-scroll img:hover { transform: scale(1.03); }
+    .gallery-title {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    /* ── ORARI / CTA ── */
+    .cta-section {
+      background: linear-gradient(135deg, var(--brown-mid) 0%, var(--brown-rich) 100%);
+      text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 70% 70% at 50% 50%, rgba(212,148,58,0.15) 0%, transparent 70%);
+    }
+    .cta-inner { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
+    .cta-time {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 900; color: var(--gold-light);
+      line-height: 1;
+      text-shadow: 0 0 60px rgba(240,192,96,0.4);
+      margin: 1.5rem 0;
+    }
+    .cta-days {
+      font-size: 1rem; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--cream); font-weight: 600;
+      opacity: 0.8; margin-bottom: 2.5rem;
+    }
+
+    /* ── PERSONALIZZAZIONE ── */
+    .custom-section { background: var(--brown-deep); }
+    .custom-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1.2fr;
+      gap: 5rem; align-items: center;
+    }
+    .custom-img-wrap { position: relative; }
+    .custom-img-wrap img {
+      width: 100%; border-radius: 24px;
+      border: 2px solid rgba(212,148,58,0.25);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    }
+    .custom-blob {
+      position: absolute;
+      top: -20px; left: -20px;
+      width: 120px; height: 120px;
+      background: var(--pistachio);
+      border-radius: 50%; opacity: 0.15;
+      filter: blur(30px);
+    }
+    .custom-list { margin-top: 2rem; display: flex; flex-direction: column; gap: 1rem; }
+    .custom-item {
+      display: flex; align-items: flex-start; gap: 1rem;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(212,148,58,0.12);
+      border-radius: 14px; padding: 1.2rem;
+      transition: border-color 0.3s;
+    }
+    .custom-item:hover { border-color: rgba(212,148,58,0.35); }
+    .custom-num {
+      font-family: var(--font-display);
+      font-size: 1.8rem; font-weight: 900;
+      color: var(--gold); opacity: 0.5; line-height: 1;
+      flex-shrink: 0;
+    }
+    .custom-text h4 { font-weight: 800; color: var(--white); margin-bottom: 0.2rem; }
+    .custom-text p { font-size: 0.88rem; color: rgba(245,232,208,0.65); line-height: 1.6; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #0e0703;
+      padding: 3rem 2.5rem;
+      border-top: 1px solid rgba(212,148,58,0.15);
+    }
+    .footer-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: wrap; gap: 1.5rem;
+    }
+    .footer-logo {
+      font-family: var(--font-display);
+      font-size: 1.8rem; font-weight: 900;
+      color: var(--gold-light);
+    }
+    .footer-logo span { color: var(--pistachio); }
+    .footer-info { text-align: center; }
+    .footer-info p { font-size: 0.9rem; color: rgba(245,232,208,0.5); line-height: 1.8; }
+    .footer-social { display: flex; gap: 1rem; }
+    .social-btn {
+      width: 42px; height: 42px; border-radius: 50%;
+      border: 1.5px solid rgba(212,148,58,0.3);
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none; font-size: 1rem;
+      color: var(--gold); transition: background 0.3s, border-color 0.3s;
+    }
+    .social-btn:hover { background: rgba(212,148,58,0.15); border-color: var(--gold); }
+    .footer-bottom {
+      max-width: 1200px; margin: 2rem auto 0;
+      text-align: center;
+      font-size: 0.78rem; color: rgba(245,232,208,0.25);
+      border-top: 1px solid rgba(255,255,255,0.05); padding-top: 1.5rem;
+    }
+
+    /* ── RECENSIONI ── */
+    .reviews-section { background: var(--brown-rich); }
+    .reviews-inner { max-width: 1200px; margin: 0 auto; }
+    .reviews-header {
+      display: flex; justify-content: space-between;
+      align-items: flex-end; flex-wrap: wrap; gap: 1rem;
+      margin-bottom: 3rem;
+    }
+    .reviews-score {
+      display: flex; align-items: center; gap: 1.2rem;
+    }
+    .score-big {
+      font-family: var(--font-display);
+      font-size: 4rem; font-weight: 900;
+      color: var(--gold-light); line-height: 1;
+    }
+    .score-detail { display: flex; flex-direction: column; gap: 0.3rem; }
+    .stars { font-size: 1.4rem; letter-spacing: 0.1em; }
+    .score-count { font-size: 0.85rem; color: rgba(245,232,208,0.55); }
+    .reviews-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+    }
+    .review-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(212,148,58,0.15);
+      border-radius: 20px; padding: 1.6rem;
+      display: flex; flex-direction: column; gap: 1rem;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .review-card:hover {
+      border-color: rgba(212,148,58,0.35);
+      transform: translateY(-4px);
+    }
+    .review-stars { font-size: 1rem; letter-spacing: 0.08em; }
+    .review-text {
+      font-size: 0.92rem; line-height: 1.7;
+      color: rgba(245,232,208,0.85);
+      flex: 1;
+      font-style: italic;
+    }
+    .review-text::before { content: '"'; font-size: 1.5rem; color: var(--gold); line-height: 0; vertical-align: -0.4em; margin-right: 2px; }
+    .review-text::after  { content: '"'; font-size: 1.5rem; color: var(--gold); line-height: 0; vertical-align: -0.4em; margin-left: 2px; }
+    .review-author {
+      display: flex; align-items: center; gap: 0.8rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(212,148,58,0.1);
+    }
+    .review-avatar {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--brown-mid);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 0.9rem; color: var(--gold-light);
+      flex-shrink: 0;
+    }
+    .review-name { font-weight: 800; font-size: 0.88rem; color: var(--white); }
+    .review-source { font-size: 0.75rem; color: rgba(245,232,208,0.4); }
+    .reviews-cta {
+      text-align: center; margin-top: 2.5rem;
+    }
+    .btn-outline-gold {
+      display: inline-block;
+      border: 1.5px solid var(--gold);
+      color: var(--gold);
+      padding: 0.8rem 2rem; border-radius: 100px;
+      font-weight: 700; font-size: 0.9rem;
+      text-decoration: none; letter-spacing: 0.05em;
+      transition: background 0.3s, color 0.3s;
+    }
+    .btn-outline-gold:hover { background: var(--gold); color: var(--brown-deep); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-14px); }
+    }
+    @keyframes spin-slow {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; text-align: center; padding-top: 8rem; }
+      .hero-image { margin-top: 3rem; }
+      .hero-sub { margin: 1.5rem auto 0; }
+      .hero-ctas { justify-content: center; }
+      .features-inner { grid-template-columns: 1fr; }
+      .features-imgs { order: -1; }
+      .menu-grid { grid-template-columns: 1fr 1fr; }
+      .reviews-grid { grid-template-columns: 1fr; }
+      .reviews-header { flex-direction: column; align-items: flex-start; }
+      .custom-inner { grid-template-columns: 1fr; }
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+    }
+    @media (max-width: 600px) {
+      .menu-grid { grid-template-columns: 1fr; }
+      .features-cards { grid-template-columns: 1fr; }
+      .features-imgs { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">Cornetto<span>Mania</span></div>
+    <ul class="nav-links">
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#galleria">Galleria</a></li>
+      <li><a href="#personalizza">Personalizza</a></li>
+      <li><a href="#recensioni">Recensioni</a></li>
+      <li><a href="#orari">Orari</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-text">
+      <div class="hero-tag">🌙 Aperto fino a tardi</div>
+      <h1 class="hero-title">
+        Il cornetto<br>
+        <em>che non dorme.</em>
+      </h1>
+      <p class="hero-sub">
+        Ripieni generosi, impasto sfogliato al punto giusto, gusti che cambiano ogni giorno. Vieni quando vuoi — siamo qui per farti felice, notte compresa.
+      </p>
+      <div class="hero-ctas">
+        <a href="#menu" class="btn-primary">Scopri il menu</a>
+        <a href="#orari" class="btn-secondary">Orari & Dove siamo</a>
+      </div>
+    </div>
+    <div class="hero-image">
+      <div class="hero-img-frame">
+        <img
+          src="https://via.placeholder.com/520x580/3b1a08/d4943a?text=."
+          alt="Inserire qui la foto verticale del cornetto al cioccolato con glassa lucida e decorazioni di cioccolato bianco — immagine 1"
+        />
+      </div>
+      <div class="hero-badge">OPEN<br>LATE<br>NIGHT</div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <span>Cornetti al Cioccolato</span><span class="marquee-dot">✦</span>
+      <span>Ripieni Generosi</span><span class="marquee-dot">✦</span>
+      <span>Crema al Pistacchio</span><span class="marquee-dot">✦</span>
+      <span>Aperto fino a Tardi</span><span class="marquee-dot">✦</span>
+      <span>Personalizzabile</span><span class="marquee-dot">✦</span>
+      <span>Bomboloni Artigianali</span><span class="marquee-dot">✦</span>
+      <span>Kinder Bueno</span><span class="marquee-dot">✦</span>
+      <span>Cornetti al Cioccolato</span><span class="marquee-dot">✦</span>
+      <span>Ripieni Generosi</span><span class="marquee-dot">✦</span>
+      <span>Crema al Pistacchio</span><span class="marquee-dot">✦</span>
+      <span>Aperto fino a Tardi</span><span class="marquee-dot">✦</span>
+      <span>Personalizzabile</span><span class="marquee-dot">✦</span>
+      <span>Bomboloni Artigianali</span><span class="marquee-dot">✦</span>
+      <span>Kinder Bueno</span><span class="marquee-dot">✦</span>
+    </div>
+  </div>
+
+  <!-- FEATURES -->
+  <section class="features" id="perche">
+    <div class="features-inner">
+      <div>
+        <p class="section-label">Perché Cornetto Mania</p>
+        <h2 class="section-title">Non è solo<br><em>un cornetto.</em></h2>
+        <div class="features-cards">
+          <div class="feat-card">
+            <div class="feat-icon">🌙</div>
+            <div class="feat-title">Aperto fino a tardi</div>
+            <div class="feat-desc">Quando tutti chiudono, noi siamo ancora aperti. La voglia non ha orari.</div>
+          </div>
+          <div class="feat-card">
+            <div class="feat-icon">🍫</div>
+            <div class="feat-title">Ripieni abbondanti</div>
+            <div class="feat-desc">Niente mezze misure: ogni morso è pieno, cremoso, soddisfacente.</div>
+          </div>
+          <div class="feat-card">
+            <div class="feat-icon">🎨</div>
+            <div class="feat-title">100% personalizzabile</div>
+            <div class="feat-desc">Scegli la base, il ripieno, il topping. Lo facciamo come vuoi tu.</div>
+          </div>
+          <div class="feat-card">
+            <div class="feat-icon">🌿</div>
+            <div class="feat-title">Gusti unici</div>
+            <div class="feat-desc">Pistacchio, Kinder, crema limone, cioccolato fondente e tanto altro ancora.</div>
+          </div>
+        </div>
+      </div>
+      <div class="features-imgs">
+        <img
+          src="https://via.placeholder.com/260x360/3b1a08/d4943a?text=."
+          alt="Inserire qui la foto verticale del cornetto al pistacchio con crema abbondante e granella verde — immagine 2"
+        />
+        <img
+          src="https://via.placeholder.com/260x360/1a0d05/d4943a?text=."
+          alt="Inserire qui la foto verticale del trancetto con crema al limone e more fresche — immagine 3"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- MENU HIGHLIGHT -->
+  <section class="menu-section" id="menu">
+    <div class="menu-inner">
+      <div class="menu-header">
+        <div>
+          <p class="section-label">Il nostro menu</p>
+          <h2 class="section-title">Le star<br><em>del banco.</em></h2>
+        </div>
+        <a href="#orari" class="btn-primary">Vieni a trovarci</a>
+      </div>
+      <div class="menu-grid">
+        <div class="menu-card">
+          <img
+            class="menu-card-img"
+            src="https://via.placeholder.com/400x300/3b1a08/d4943a?text=."
+            alt="Inserire qui la foto orizzontale del cornetto al cioccolato con glassa scura e decorazioni — immagine 1"
+          />
+          <div class="menu-card-body">
+            <div class="menu-card-tag">Best seller</div>
+            <div class="menu-card-name">Cornetto al Cioccolato</div>
+            <div class="menu-card-desc">Sfoglia croccante, ripieno generoso di crema al cioccolato fondente, granella e glassa lucida.</div>
+          </div>
+        </div>
+        <div class="menu-card">
+          <img
+            class="menu-card-img"
+            src="https://via.placeholder.com/400x300/1a3306/8ab840?text=."
+            alt="Inserire qui la foto orizzontale del cornetto al pistacchio con crema abbondante e pistacchi tritati — immagine 2"
+          />
+          <div class="menu-card-body">
+            <div class="menu-card-tag">Fan favourite</div>
+            <div class="menu-card-name">Cornetto al Pistacchio</div>
+            <div class="menu-card-desc">Crema di pistacchio siciliano, granella croccante su ogni strato. Il verde che fa innamorare.</div>
+          </div>
+        </div>
+        <div class="menu-card">
+          <img
+            class="menu-card-img"
+            src="https://via.placeholder.com/400x300/3b1a08/f0c060?text=."
+            alt="Inserire qui la foto orizzontale dei cornetti Kinder Bueno farciti con crema e bastoncini di cioccolato — immagine 6"
+          />
+          <div class="menu-card-body">
+            <div class="menu-card-tag">Esclusiva</div>
+            <div class="menu-card-name">Cornetto Kinder Bueno</div>
+            <div class="menu-card-desc">Crema Kinder, stecca di Bueno intera in cima. Irresistibile e Instagram-worthy.</div>
+          </div>
+        </div>
+        <div class="menu-card">
+          <img
+            class="menu-card-img"
+            src="https://via.placeholder.com/400x300/1a0d05/f5e8d0?text=."
+            alt="Inserire qui la foto orizzontale del trancetto con crema al limone e more — immagine 3"
+          />
+          <div class="menu-card-body">
+            <div class="menu-card-tag">Classico</div>
+            <div class="menu-card-name">Trancetto Crema & More</div>
+            <div class="menu-card-desc">Pan di spagna morbido, crema pasticcera, more fresche e zucchero a velo. Eleganza pura.</div>
+          </div>
+        </div>
+        <div class="menu-card">
+          <img
+            class="menu-card-img"
+            src="https://via.placeholder.com/400x300/3b1a08/d4943a?text=."
+            alt="Inserire qui la foto orizzontale dei bomboloni con creme colorate in mostra nel vassoio — immagine 5"
+          />
+          <div class="menu-card-body">
+            <div class="menu-card-tag">Bomboloni</div>
+            <div class="menu-card-name">Bomboloni Farciti</div>
+            <div class="menu-card-desc">Cioccolato, pistacchio, crema e limone. Quattro gusti per quattro stati d'animo.</div>
+          </div>
+        </div>
+        <div class="menu-card">
+          <img
+            class="menu-card-img"
+            src="https://via.placeholder.com/400x300/3b1a08/d4943a?text=."
+            alt="Inserire qui la foto orizzontale dei pain au chocolat e sfogliatine salate in teglia — immagine 7 o 8"
+          />
+          <div class="menu-card-body">
+            <div class="menu-card-tag">Sfoglia</div>
+            <div class="menu-card-name">Pain au Chocolat & Salati</div>
+            <div class="menu-card-desc">Pasta sfoglia burrosa con cioccolato a strati, o versione salata con crema al formaggio.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="gallery-strip" id="galleria">
+    <div class="gallery-title">
+      <p class="section-label" style="text-align:center;">Galleria</p>
+      <h2 class="section-title" style="text-align:center;">Scorri e<br><em>fatti venire fame.</em></h2>
+    </div>
+    <div class="gallery-scroll">
+      <img src="https://via.placeholder.com/300x400/3b1a08/d4943a?text=." alt="Inserire qui la foto del cornetto al cioccolato con decorazioni — immagine 1" />
+      <img src="https://via.placeholder.com/300x400/1a3306/8ab840?text=." alt="Inserire qui la foto del cornetto al pistacchio con granella — immagine 2" />
+      <img src="https://via.placeholder.com/300x400/1a0d05/f5e8d0?text=." alt="Inserire qui la foto del trancetto crema e more dall'alto — immagine 3" />
+      <img src="https://via.placeholder.com/300x400/3b1a08/d4943a?text=." alt="Inserire qui la foto della teglia di cornetti al cioccolato appena sfornati — immagine 4" />
+      <img src="https://via.placeholder.com/300x400/2a1505/f0c060?text=." alt="Inserire qui la foto del banco bomboloni con le creme colorate — immagine 5" />
+      <img src="https://via.placeholder.com/300x400/3b1a08/d4943a?text=." alt="Inserire qui la foto dei cornetti Kinder Bueno con bastoncini di cioccolato — immagine 6" />
+      <img src="https://via.placeholder.com/300x400/1a0d05/f5e8d0?text=." alt="Inserire qui la foto della sfogliatina salata in primo piano — immagine 7" />
+    </div>
+  </section>
+
+  <!-- PERSONALIZZA -->
+  <section class="custom-section" id="personalizza">
+    <div class="custom-inner">
+      <div class="custom-img-wrap">
+        <div class="custom-blob"></div>
+        <img
+          src="https://via.placeholder.com/500x600/3b1a08/d4943a?text=."
+          alt="Inserire qui la foto ravvicinata del cornetto al pistacchio con crema abbondante che fuoriesce — immagine 2"
+        />
+      </div>
+      <div>
+        <p class="section-label">Come funziona</p>
+        <h2 class="section-title">Il tuo cornetto,<br><em>a modo tuo.</em></h2>
+        <div class="custom-list">
+          <div class="custom-item">
+            <div class="custom-num">01</div>
+            <div class="custom-text">
+              <h4>Scegli la base</h4>
+              <p>Cornetto sfogliato, bombolone, pain au chocolat o trancetto — tu decidi il punto di partenza.</p>
+            </div>
+          </div>
+          <div class="custom-item">
+            <div class="custom-num">02</div>
+            <div class="custom-text">
+              <h4>Scegli il ripieno</h4>
+              <p>Cioccolato, pistacchio, crema classica, Kinder, limone, nocciola… e le novità del giorno.</p>
+            </div>
+          </div>
+          <div class="custom-item">
+            <div class="custom-num">03</div>
+            <div class="custom-text">
+              <h4>Abbondanza garantita</h4>
+              <p>Niente risparmio: qui il ripieno si vede, si sente e lascia il segno. Promesso.</p>
+            </div>
+          </div>
+          <div class="custom-item">
+            <div class="custom-num">04</div>
+            <div class="custom-text">
+              <h4>Goditi il momento</h4>
+              <p>Di giorno, di sera, a tarda notte. Siamo qui. Il cornetto ti aspetta caldo.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RECENSIONI -->
+  <section class="reviews-section" id="recensioni">
+    <div class="reviews-inner">
+      <div class="reviews-header">
+        <div>
+          <p class="section-label">Cosa dicono di noi</p>
+          <h2 class="section-title">Parola<br><em>dei clienti.</em></h2>
+        </div>
+        <div class="reviews-score">
+          <div class="score-big">4.5</div>
+          <div class="score-detail">
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+            <div class="score-count">Valutazione media · Google Maps</div>
+          </div>
+        </div>
+      </div>
+      <div class="reviews-grid">
+        <div class="review-card">
+          <div class="review-stars">⭐⭐⭐⭐⭐</div>
+          <p class="review-text">Il cornetto al pistacchio è il migliore che abbia mai mangiato in vita mia. Me ne sono innamorata.</p>
+          <div class="review-author">
+            <div class="review-avatar">S</div>
+            <div>
+              <div class="review-name">Sara B.</div>
+              <div class="review-source">Google Maps</div>
+            </div>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">⭐⭐⭐⭐⭐</div>
+          <p class="review-text">Ci sono passato alle 1:30 di notte per un maritozzo con la panna… ora è diventata la tappa fissa. Servizio ottimo e maritozzo sublime.</p>
+          <div class="review-author">
+            <div class="review-avatar">M</div>
+            <div>
+              <div class="review-name">Marco C.</div>
+              <div class="review-source">Google Maps</div>
+            </div>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">⭐⭐⭐⭐⭐</div>
+          <p class="review-text">Tantissima scelta di gusti e qualità. Il locale è completamente nuovo e pulitissimo — e la pulizia in un locale è la prima cosa!</p>
+          <div class="review-author">
+            <div class="review-avatar">D</div>
+            <div>
+              <div class="review-name">D. S.</div>
+              <div class="review-source">Google Maps</div>
+            </div>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">⭐⭐⭐⭐⭐</div>
+          <p class="review-text">Cornettina buonissima! Il personale al bancone è gentilissimo. Torneremo sicuramente!</p>
+          <div class="review-author">
+            <div class="review-avatar">V</div>
+            <div>
+              <div class="review-name">Veronica M.</div>
+              <div class="review-source">Google Maps</div>
+            </div>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">⭐⭐⭐⭐⭐</div>
+          <p class="review-text">Ottimo servizio, buon rapporto qualità-prezzo. Difficoltà a trovare parcheggio, ma assolutamente da tornarci!</p>
+          <div class="review-author">
+            <div class="review-avatar">R</div>
+            <div>
+              <div class="review-name">Roberto F.</div>
+              <div class="review-source">Google Maps</div>
+            </div>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">⭐⭐⭐⭐⭐</div>
+          <p class="review-text">Buonissimo tutto, provare per credere! Se capiti all'orario giusto ti delizi con cornetti e danesi appena sfornati — crea dipendenza!</p>
+          <div class="review-author">
+            <div class="review-avatar">C</div>
+            <div>
+              <div class="review-name">Crenabog R.</div>
+              <div class="review-source">Google Maps</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="reviews-cta">
+        <a href="https://maps.app.goo.gl/uAPRobixrLkqFDbK7" target="_blank" class="btn-outline-gold">Lascia la tua recensione su Google →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ORARI / CTA -->
+  <section class="cta-section" id="orari">
+    <div class="cta-inner">
+      <p class="section-label">Orari & Sede</p>
+      <h2 class="section-title">Vieni quando<br><em>ti va.</em></h2>
+      <div class="cta-time">18:00 – 3:00</div>
+      <p class="cta-days">Aperto tutti i giorni — incluso weekend e festivi</p>
+      <p style="color:rgba(245,232,208,0.65); font-size:1rem; margin-bottom:2.5rem;">
+        📍 Via Tuscolana, 584 — Roma (RM)<br>
+        🚇 Fermata Arco di Travertino<br>
+        📞 <a href="tel:+393920547036" style="color:var(--gold-light); text-decoration:none;">392 054 7036</a>
+      </p>
+      <a href="tel:+393920547036" class="btn-primary">Chiamaci ora</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">Cornetto<span>Mania</span></div>
+      <div class="footer-info">
+        <p>Via Tuscolana, 584 · 00181 Roma (RM)<br>Aperto tutti i giorni · 18:00 – 3:00 · Tel. 392 054 7036</p>
+      </div>
+      <div class="footer-social">
+        <a href="#" class="social-btn" aria-label="Instagram">📸</a>
+        <a href="#" class="social-btn" aria-label="TikTok">🎵</a>
+        <a href="#" class="social-btn" aria-label="WhatsApp">💬</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2025 Cornetto Mania · Tutti i diritti riservati
+    </div>
+  </footer>
+
+</body>
+</html>

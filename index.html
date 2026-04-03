@@ -164,6 +164,7 @@
       overflow: hidden;
       background: var(--gold);
       padding: 0.8rem 0;
+      margin-bottom: 0;
     }
     .marquee-track {
       display: flex; gap: 3rem;
@@ -193,7 +194,7 @@
     .section-title em { font-style: italic; color: var(--gold-light); }
 
     /* ── FEATURES ── */
-    .features { background: var(--brown-rich); }
+    .features { background: var(--brown-rich); padding-top: 3rem; }
     .features-inner {
       max-width: 1200px; margin: 0 auto;
       display: grid; grid-template-columns: 1fr 1fr;
@@ -603,6 +604,14 @@
         </div>
       </div>
       <div class="features-imgs">
+        <img
+          src="2image.jpg"
+          alt="Trancetto al pistacchio con crema abbondante e granella verde"
+        />
+        <img
+          src="3image.jpg"
+          alt="Trancetto con crema pasticcera al limone e more fresche su zucchero a velo"
+        />
       </div>
     </div>
   </section>
@@ -626,8 +635,8 @@
           />
           <div class="menu-card-body">
             <div class="menu-card-tag">Best seller</div>
-            <div class="menu-card-name">Cornetto al Cioccolato</div>
-            <div class="menu-card-desc">Sfoglia croccante, ripieno generoso di crema al cioccolato fondente, granella e glassa lucida.</div>
+            <div class="menu-card-name">Cubo alla Crema</div>
+            <div class="menu-card-desc">Sfoglia croccante, ripieno generoso di crema, con more.</div>
           </div>
         </div>
         <div class="menu-card">
@@ -638,8 +647,8 @@
           />
           <div class="menu-card-body">
             <div class="menu-card-tag">Fan favourite</div>
-            <div class="menu-card-name">Cornetto al Pistacchio</div>
-            <div class="menu-card-desc">Crema di pistacchio siciliano, granella croccante su ogni strato. Il verde che fa innamorare.</div>
+            <div class="menu-card-name">Bombe</div>
+            <div class="menu-card-desc">Bombe di tutti i gusti, nutella, cioccolato bianco, pistacchio, crema, nocciola e tanti altri...</div>
           </div>
         </div>
         <div class="menu-card">
@@ -650,8 +659,8 @@
           />
           <div class="menu-card-body">
             <div class="menu-card-tag">Esclusiva</div>
-            <div class="menu-card-name">Cornetto Kinder Bueno</div>
-            <div class="menu-card-desc">Crema Kinder, stecca di Bueno intera in cima. Irresistibile e Instagram-worthy.</div>
+            <div class="menu-card-name">Conchiglia Al Cioccolato</div>
+            <div class="menu-card-desc">Conchiglia con ripieno al cioccolato con granella sopra.</div>
           </div>
         </div>
         <div class="menu-card">
@@ -662,8 +671,8 @@
           />
           <div class="menu-card-body">
             <div class="menu-card-tag">Classico</div>
-            <div class="menu-card-name">Trancetto Crema & More</div>
-            <div class="menu-card-desc">Pan di spagna morbido, crema pasticcera, more fresche e zucchero a velo. Eleganza pura.</div>
+            <div class="menu-card-name">Fagottini Al Cioccolato</div>
+            <div class="menu-card-desc">Fagottini al cioccolato con sfoglia croccante e granella di cioccolato sopra.</div>
           </div>
         </div>
         <div class="menu-card">
@@ -673,9 +682,9 @@
             alt="Bomboloni farciti con creme colorate in bella mostra nel vassoio"
           />
           <div class="menu-card-body">
-            <div class="menu-card-tag">Bomboloni</div>
-            <div class="menu-card-name">Bomboloni Farciti</div>
-            <div class="menu-card-desc">Cioccolato, pistacchio, crema e limone. Quattro gusti per quattro stati d'animo.</div>
+            <div class="menu-card-tag">Classici</div>
+            <div class="menu-card-name">Cornetto Kinder</div>
+            <div class="menu-card-desc">Cornetto con crema alla nocciola e kinder a scelta sopra.</div>
           </div>
         </div>
         <div class="menu-card">
@@ -686,8 +695,8 @@
           />
           <div class="menu-card-body">
             <div class="menu-card-tag">Sfoglia</div>
-            <div class="menu-card-name">Pain au Chocolat & Salati</div>
-            <div class="menu-card-desc">Pasta sfoglia burrosa con cioccolato a strati, o versione salata con crema al formaggio.</div>
+            <div class="menu-card-name">Cubo Al Cioccolato</div>
+            <div class="menu-card-desc">Cornetto a forma di cubo con glassa al cioccolato e sopra kinder a scelta..</div>
           </div>
         </div>
       </div>
@@ -716,11 +725,6 @@
   <section class="custom-section" id="personalizza">
     <div class="custom-inner">
       <div class="custom-img-wrap">
-        <div class="custom-blob"></div>
-        <img
-          src="2image.jpg"
-          alt="Trancetto al pistacchio con crema abbondante che fuoriesce"
-        />
       </div>
       <div>
         <p class="section-label">Come funziona</p>
@@ -811,7 +815,7 @@
         </div>
         <div class="review-card">
           <div class="review-stars">⭐⭐⭐⭐⭐</div>
-          <p class="review-text">Cornetti buonissimi! Il personale al bancone è gentilissimo. Torneremo sicuramente!</p>
+          <p class="review-text">Cornettina buonissima! Il personale al bancone è gentilissimo. Torneremo sicuramente!</p>
           <div class="review-author">
             <div class="review-avatar">V</div>
             <div>
@@ -873,13 +877,13 @@
         <p>Via Tuscolana, 584 · 00181 Roma (RM)<br>Aperto tutti i giorni · 18:00 – 3:00 · Tel. 392 054 7036</p>
       </div>
       <div class="footer-social">
-        <a href="#" class="social-btn" aria-label="Instagram">📸</a>
-        <a href="#" class="social-btn" aria-label="TikTok">🎵</a>
-        <a href="#" class="social-btn" aria-label="WhatsApp">💬</a>
+        <a href="https://www.instagram.com/corn.ett24mania?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="social-btn" aria-label="Instagram">📸</a>
+        <a href="https://www.tiktok.com/@cornetto_mania?_r=1&_t=ZN-95F1SD30oTu" class="social-btn" aria-label="TikTok">🎵</a>
+        <a href="https://wa.me/393331198960" class="social-btn" aria-label="WhatsApp">💬</a>
       </div>
     </div>
     <div class="footer-bottom">
-      © 2026 Cornetto Mania · Tutti i diritti riservati
+      © 2025 Cornetto Mania · Tutti i diritti riservati
     </div>
   </footer>
 
